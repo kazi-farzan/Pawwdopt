@@ -16,11 +16,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Dog App',
       theme: ThemeData.light().copyWith(
-        primaryColor: const Color(0xFFff4c68),
-        scaffoldBackgroundColor: const Color(0xFFff4c68),
+        primaryColor: const Color(0xFFf5f5f5),
+        scaffoldBackgroundColor: const Color(0xFFf5f5f5),
         appBarTheme: AppBarTheme(
-            backgroundColor:  const Color(0xFFff4c68),
-            titleTextStyle: TextStyle(color:const Color(0xFFffffff), fontSize: 30.0),),
+          backgroundColor: const Color(0xFFff4c68),
+            shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.horizontal(
+                  left: Radius.elliptical(25, 25),
+                  right: Radius.elliptical(25, 25)),
+            ),// Use custom shape for AppBar
+          titleTextStyle: TextStyle(color: const Color(0xFFffffff), fontSize: 30.0),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Color(0xFF23272b)), // Set your desired background color
@@ -29,7 +35,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-
       initialRoute: '/',
       routes: {
         '/': (context) => HomeScreen(),

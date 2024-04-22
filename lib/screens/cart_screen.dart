@@ -8,7 +8,7 @@ class CartScreen extends StatelessWidget {
 
   CartScreen() {
     // Clear cart on hot restart
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       LocalStorageService.clearCart();
     });
   }
