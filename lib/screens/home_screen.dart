@@ -3,6 +3,8 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:doggie_shop/utilities/api_service.dart';
 import 'package:doggie_shop/utilities/local_storage_service.dart';
 
+//TODO: Change the way api calling is done instead of calling it once, run it again when all the cards are over
+
 class DogImage {
   final String imageUrl;
   final String breedName;
@@ -36,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       dogImages = newDogImages;
     });
   }
+
 
   String _parseBreedName(String imageUrl) {
     List<String> parts = imageUrl.split('/');
@@ -112,8 +115,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      // Add heart popping animation
-                      AnimatedHeart(),
                     ],
                   ),
                 ),
@@ -125,6 +126,11 @@ class _HomeScreenState extends State<HomeScreen> {
             itemWidth: 500.0,
             loop: false,
             layout: SwiperLayout.TINDER,
+            onIndexChanged: (index) {
+              if (index == dogImages.length - 1) {
+                _fetchDogImages();
+              }
+            },
           ),
         ),
       ),
@@ -140,6 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 }
 
 
